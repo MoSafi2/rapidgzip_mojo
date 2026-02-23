@@ -1,0 +1,16 @@
+# Build artifacts
+.deps/
+*.so
+*.dylib
+*.dll
+*.mojopkg
+
+# Pixi / Conda
+.pixi/
+*.conda
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

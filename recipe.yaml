@@ -1,0 +1,38 @@
+context:
+  name: rapidgzip-mojo
+  version: "0.1.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  path: .
+
+build:
+  number: 0
+  script:
+    - bash ${RECIPE_DIR}/build_conda.sh
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - zlib
+    - mojo ==0.26.1.0
+  host:
+    - zlib
+  run:
+    - mojo ==0.26.1.0
+    - zlib
+
+tests:
+  - script:
+      - mojo run -I $PREFIX/lib/mojo -L $PREFIX/lib $PREFIX/lib/mojo/test_rapidgzip.mojo
+
+about:
+  homepage: https://github.com/mxmlnkn/rapidgzip
+  license: MIT
+  summary: Mojo FFI bindings for rapidgzip parallel gzip decompression
+  description: |
+    Mojo bindings for the rapidgzip C++ library via a thin C shim.
+    Provides RapidgzipFile, decompress_buffer, decompress_alloc, and index API.

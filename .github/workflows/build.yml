@@ -1,0 +1,23 @@
+name: Build rapidgzip-mojo
+
+on:
+  push:
+    branches: [main, master]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: prefix-dev/setup-pixi@v2
+
+      - name: Build conda package
+        run: pixi build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rapidgzip-mojo-conda
+          path: "*.conda"
