@@ -36,7 +36,7 @@ Or add as a dependency from Git (in another project's `pixi.toml`):
 
 ```toml
 [dependencies]
-rapidgzip-mojo = { git = "https://github.com/MoSafi2/rapidgzip-mojo.git", tag = "v0.1.0" }
+rapidgzip-mojo = { git = "[https://github.com/MoSafi2/rapidgzip-mojo.git](https://github.com/MoSafi2/rapidgzip_mojo)", branch = "main" }
 ```
 
 ## Usage
