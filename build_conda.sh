@@ -78,7 +78,9 @@ ${CXX} \
     ${LDFLAGS} \
     -L"${PREFIX}/lib" \
     -lz \
-    -o "${OUTPUT_LIB}"echo "Shared library built: ${OUTPUT_LIB}"
+    -o "${OUTPUT_LIB}"
+    
+echo "Shared library built: ${OUTPUT_LIB}"
 
 # Build Mojo package
 echo "Packaging rapidgzip.mojopkg..."
