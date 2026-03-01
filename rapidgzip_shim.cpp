@@ -13,7 +13,7 @@
  #include <filereader/Standard.hpp>
  #include <filereader/BufferView.hpp>
  #include <rapidgzip/ParallelGzipReader.hpp>
- #include <rapidgzip/gzip.hpp>
+ #include <rapidgzip/gzip/gzip.hpp>
  
  #include <algorithm>
  #include <cstdlib>
@@ -72,7 +72,7 @@
          h->parallelism = parallelism ? parallelism
                                       : std::thread::hardware_concurrency();
  
-         auto file_reader = std::make_unique<StandardFileReader>(path);
+         auto file_reader = std::make_unique<rapidgzip::StandardFileReader>(path);
          h->reader = std::make_unique<rapidgzip::ParallelGzipReader<>>(
              std::move(file_reader), h->parallelism);
  
@@ -153,7 +153,7 @@
      try {
          uint32_t nthreads = parallelism ? parallelism
                                          : std::thread::hardware_concurrency();
-         auto mem_reader = std::make_unique<BufferViewFileReader>(
+         auto mem_reader = std::make_unique<rapidgzip::BufferViewFileReader>(
              reinterpret_cast<const char*>(in_buf), in_size);
          rapidgzip::ParallelGzipReader<> reader(std::move(mem_reader), nthreads);
  
@@ -184,7 +184,7 @@
      try {
          uint32_t nthreads = parallelism ? parallelism
                                          : std::thread::hardware_concurrency();
-         auto mem_reader = std::make_unique<BufferViewFileReader>(
+         auto mem_reader = std::make_unique<rapidgzip::BufferViewFileReader>(
              reinterpret_cast<const char*>(in_buf), in_size);
          rapidgzip::ParallelGzipReader<> reader(std::move(mem_reader), nthreads);
  
@@ -265,7 +265,7 @@
  {
      if (!h || !data) return RAPIDGZIP_ERR_NULL_PTR;
      try {
-         auto index_reader = std::make_unique<BufferViewFileReader>(
+         auto index_reader = std::make_unique<rapidgzip::BufferViewFileReader>(
              reinterpret_cast<const char*>(data), size);
          h->reader->importIndex(std::move(index_reader));
          h->index_built = true;

@@ -7,7 +7,14 @@ package:
   version: ${{ version }}
 
 source:
-  path: .
+  - path: .
+  - url: https://github.com/mxmlnkn/rapidgzip/archive/refs/tags/rapidgzip-v0.16.0.tar.gz
+    sha256: 1ac77e808b79ffbb3dbbbdded795d6a8c160d6d0ca295cd6d658f09af468160d
+    target_directory: rapidgzip
+  # librapidarchive submodule (C++ headers live here; GitHub tarballs omit submodules)
+  - url: https://github.com/mxmlnkn/indexed_bzip2/archive/1221a30bb548b305a69e5715f2bc348ba37ac243.tar.gz
+    sha256: 1d5cb064430568b0e13c829d907f40e96581f17ba931271e3c7e78a9bdd9118b
+    target_directory: rapidgzip/librapidarchive
 
 build:
   number: 0
@@ -16,11 +23,14 @@ build:
 
 requirements:
   build:
+    - ${{ compiler("c") }}
     - ${{ compiler("cxx") }}
     - zlib
     - mojo ==0.26.1.0
+
   host:
     - zlib
+
   run:
     - mojo ==0.26.1.0
     - zlib
