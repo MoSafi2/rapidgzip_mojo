@@ -76,8 +76,9 @@ ${CXX} \
     -I"${RAPIDGZIP_INCLUDE}/indexed_bzip2" \
     "${SRC_DIR}/rapidgzip_shim.cpp" \
     ${LDFLAGS} \
-    -o "${OUTPUT_LIB}"
-echo "Shared library built: ${OUTPUT_LIB}"
+    -L"${PREFIX}/lib" \
+    -lz \
+    -o "${OUTPUT_LIB}"echo "Shared library built: ${OUTPUT_LIB}"
 
 # Build Mojo package
 echo "Packaging rapidgzip.mojopkg..."
