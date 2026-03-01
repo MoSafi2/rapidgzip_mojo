@@ -51,14 +51,23 @@ echo "Using compiler: ${CXX:-g++}"
 echo "CXXFLAGS: ${CXXFLAGS:-}"
 echo "LDFLAGS: ${LDFLAGS:-}"
 
+case "${target_platform}" in
+    linux-*)
+        CONSTEXPR_FLAG="-fconstexpr-ops-limit=134217728"
+        ;;
+    *)
+        CONSTEXPR_FLAG=""
+        ;;
+esac
+
 # Build the shared library
 echo "Building ${OUTPUT_LIB}..."
-"${CXX:-g++}" \
-    ${CXXFLAGS:-} \
+${CXX} \
+    ${CXXFLAGS} \
     -std=c++17 \
     -fPIC \
     -shared \
-    -fconstexpr-ops-limit=134217728 \
+    ${CONSTEXPR_FLAG} \
     -I"${PREFIX}/include" \
     -I"${RAPIDGZIP_INCLUDE}" \
     -I"${RAPIDGZIP_INCLUDE}/rapidgzip" \
@@ -66,9 +75,8 @@ echo "Building ${OUTPUT_LIB}..."
     -I"${RAPIDGZIP_INCLUDE}/huffman" \
     -I"${RAPIDGZIP_INCLUDE}/indexed_bzip2" \
     "${SRC_DIR}/rapidgzip_shim.cpp" \
-    ${LDFLAGS:-} \
+    ${LDFLAGS} \
     -o "${OUTPUT_LIB}"
-
 echo "Shared library built: ${OUTPUT_LIB}"
 
 # Build Mojo package
