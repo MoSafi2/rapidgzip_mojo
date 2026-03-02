@@ -1,6 +1,7 @@
 # rapidgzip-mojo
 
-Mojo FFI bindings for the [rapidgzip](https://github.com/mxmlnkn/rapidgzip) C++ library via a thin C shim. Provides parallel gzip decompression with `RapidgzipFile`, `decompress_buffer`, `decompress_alloc`, and index API.
+Minimal Mojo FFI bindings for the [rapidgzip](https://github.com/mxmlnkn/rapidgzip) C++ library via a thin C shim. Provides parallel gzip decompression with `RapidgzipFile`, `decompress_buffer`, `decompress_alloc`, and index API.
+It does not cover the whole public API for rapidgzip. for now it cover tha basic use cases of parallel sequential file decompression and indexing.
 
 ## Quick start
 
@@ -74,6 +75,6 @@ rapidgzip-mojo/
 
 - **Linux:** `.so` (primary target)
 - **macOS:** `.dylib` (platform detection in Mojo FFI)
-- **Windows:** `.dll` (platform detection in Mojo FFI)
 
-Build script and conda recipe currently target linux-64; macOS/Windows can be extended later.
+Build script and conda recipe currently target linux-64; macOS-arm64 which are the current mojo targets.
+Only linux-64 was tested but probably works on WSL2.
