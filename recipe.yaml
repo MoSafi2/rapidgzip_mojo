@@ -1,6 +1,6 @@
 context:
   name: rapidgzip-mojo
-  version: "0.1.0"
+  version: "0.1.1"
 
 package:
   name: ${{ name }}
@@ -26,13 +26,13 @@ requirements:
     - ${{ compiler("c") }}
     - ${{ compiler("cxx") }}
     - zlib
-    - mojo ==0.26.1.0
+    - mojo =0.26.2
 
   host:
     - zlib
 
   run:
-    - mojo ==0.26.1.0
+    - mojo =0.26.1
     - zlib
 
 tests:
