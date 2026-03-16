@@ -7,9 +7,9 @@ Run (from project root):
 """
 
 from rapidgzip import RapidgzipFile, shim_version
-from sys import argv
-from sys.terminate import exit
-from os.path import exists
+from std.sys import argv
+from std.sys.terminate import exit
+from std.os.path import exists
 
 
 fn main() raises:

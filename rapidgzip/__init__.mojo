@@ -5,10 +5,10 @@ Usage:
     from rapidgzip import RapidgzipFile, decompress_buffer, decompress_alloc
 """
 
-from sys.ffi import OwnedDLHandle, CStringSlice
-from sys.info import platform_map
-from memory import UnsafePointer, memcpy, MutOpaquePointer, alloc
-from collections.string import StringSlice
+from std.ffi import OwnedDLHandle, CStringSlice
+from std.sys.info import platform_map
+from std.memory import UnsafePointer, memcpy, MutOpaquePointer, alloc
+from std.collections.string import StringSlice
 
 # ─────────────────────────────────────────────────────────────
 # Error codes (mirror rapidgzip_shim.h)
