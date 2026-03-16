@@ -32,7 +32,7 @@ requirements:
     - zlib
 
   run:
-    - mojo =0.26.1
+    - mojo =0.26.2
     - zlib
 
 tests:
